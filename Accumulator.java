@@ -10,67 +10,121 @@ public class Accumulator {
       in the \list that begin with \prefix,
       each followed by a space.
      */
+     public static String isFinite(
+         List_inArraySlots list,
+         int index) {
+       String output = "";
+        for( int el = 0; el < list.size(); el++){
+         if (list.get(el) instanceof Double) {
+           output += list.get(el);
+         }
+       }
+       return output;
+     }
+
     public static String catElementsStartingWith(
         List_inArraySlots list
       , String prefix
       ) {
         String result = "";
 
-        for( int el = 0; el < list.size(); el++)
-            result += // dummy for incremental development
-                      list.get( el) + " ";
+        for( int el = 0; el < list.size(); el++){
+          if (list.get(el) instanceof String){
+            String currentString = list.get(el).toString();
+            if (currentString.startsWith(prefix))
+              result += list.get(el) + ", "; // dummy for incremental development
+          }
+        }
+        //list.get( el) + " ";
+        return result;
+    }
+
+
+
+
+
+
 
             /* 3.  Stumbling block 0
                Java protects a programmer against applying a method to
                elements in list when some elements of the list might
                omit support for a particular operation.
 
-               This protection is implemented by the ___________ (compiler? JVM?)
+               This protection is implemented by the compiler. (compiler? JVM?)
                The following code violates the restriction:
               */
-            // [code that violates the restriction]
+        /*
+        public static boolean stumblingBlockZero(List_inArraySlots list,
+                                        int index) {
+          Integer example = 2;
+          return example > list.get(index);
+        }
 
-            /*
              predicted error message:
-
+             I do not know the exact wording but it will inform me that
+             the array contains Objects which are not always Integers.
              actual error message:
+             "Bad operand types for binary operator >"
+             "first type: Integer"
+             "second type: Object"
              */
 
-
-            /* 4.  Workaround 0
+             /*
+              4.  Workaround 0
                A programmer should expect there to be a way to
                work around the stumbling block, because
-               the ___________ (compiler? JVM?)
+               the JVM (compiler? JVM?)
                knows the type of an element.
 
-               Java's ___________ operator identifies the type
-               of an element to the ___________ (compiler? JVM?).
-             */
+               Java's instanceof operator identifies the type
+               of an element to the compiler (compiler? JVM?).
 
+             public static boolean stumblingBlockZero(List_inArraySlots list,
+                                             int index) {
+              Integer example = 2;
+              if (list.get(index) instanceof Integer)
+                return example > list.get(index);
+             }
+             */
 
             /* 5.  Stumbling block 1
                However, use of the operator alone is insufficient,
-               because the ___________ (compiler? JVM?)
+               because the JVM (compiler? JVM?)
                objects to the following code that adds use of
                the operator to the code from Stumbling block 0:
-             */
 
-            // [code that illustrates the use of the operator]
+            public static boolean stumblingBlockOne(List_inArraySlots list,
+                                           int index) {
+              Integer example = 2;
+              return example > list.get(index);
+           }
 
-            /*
              predicted error message:
+             "Bad operand types for binary operator >"
+             "first type: Integer"
+             "second type: Object"
 
              actual error message:
+             "Bad operand types for binary operator >"
+             "first type: Integer"
+             "second type: Object"
              */
 
 
             /* 6. Workaround 1
-               Programmers use Java's _____________ operator
-               to tell the ___________ (compiler? JVM?)
+               Programmers use Java's casting operator
+               to tell the JVM (compiler? JVM?)
                that code uses a subclass's method on an object,
                even though the reference to the object is stored
                in a super-class variable.
-             */
+
+
+             public static boolean stumblingBlockOne(List_inArraySlots list,
+                                            int index) {
+               Integer example = 2;
+               return example > (Integer) list.get(index);
+            }
+            */
 
 
             /* 7. Stumbling block 2
@@ -78,9 +132,12 @@ public class Accumulator {
                because the ___________ (compiler? JVM?)
                objects to the following code that adds use of
                the operator to the code from Stumbling block 0:
-             */
 
-            // [code that illustrates the use of the operator]
+               public static boolean stumblingBlockTwo(List_inArraySlots list,
+                                              int index) {
+                 Integer example = 2;
+                 return example > list.get(index);
+              }
 
             /*
              predicted error message:
@@ -95,10 +152,13 @@ public class Accumulator {
                elements in the list that support the method.
              */
 
-            // [working code here, finally]
+             public static boolean stumblingBlockTwo(List_inArraySlots list,
+                                            int index) {
+               Integer example = 2;
+               if (list.get(index) instanceof Integer)
+                  return example > (Integer) list.get(index);
+            }
 
-        return result;
-    }
 
 
     /**
