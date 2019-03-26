@@ -51,7 +51,20 @@ public class List_inArraySlots {
         list[ filledElements++] = val;
         return true;
      }
+     public boolean set(Object val, int index){
+       list[index] = val;
+       return true;
+     }
 
+     public boolean addAtStart(Object val){
+       Object[] modifiedArray = new Object[list.length + 1];
+       modifiedArray[0] = val;
+       for(int elementIndex = 1; elementIndex < list.length; elementIndex++)
+        modifiedArray[elementIndex] = list[elementIndex - 1];
+       list = modifiedArray;
+
+       return true;
+     }
 
     /**
       Double the capacity of the List_inArraySlots,

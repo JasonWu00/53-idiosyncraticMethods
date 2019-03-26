@@ -32,17 +32,18 @@ public class UserOfList {
           + Accumulator.catElementsStartingWith( list, "pi")
           + System.lineSeparator());
 
-        System.out.println(Accumulator.stumblingBlockZero(list, 1));
+        //System.out.println(Accumulator.stumblingBlockZero(list, 1));
 
         // list of finite Doubles
-        List_inArraySlots numbers = Accumulator.finites( list);
+        /*List_inArraySlots numbers = Accumulator.finites( list);
         System.out.println( "list of finite Doubles: "
            + numbers.size() + " elements:" + System.lineSeparator()
            + numbers
-           + System.lineSeparator());
+           + System.lineSeparator());*/
 
         // test ?? template
-        System.out.println( "test ??");
+        System.out.println( "Adding the number 327 to start.");
+        list.addAtStart(327);
         System.out.println( list + System.lineSeparator());
     }
 }

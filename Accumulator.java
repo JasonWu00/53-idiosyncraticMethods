@@ -157,6 +157,8 @@ public class Accumulator {
                Integer example = 2;
                if (list.get(index) instanceof Integer)
                   return example > (Integer) list.get(index);
+
+                return true;
             }
 
 
@@ -165,8 +167,12 @@ public class Accumulator {
       @return a list of each of the Double elements
       from the \list whose value is "finite".
      */
-    // public static List_inArraySlots finites(
-        // List_inArraySlots list
-      // ) {
-    // }
+    /*public static Object[] finites(List_inArraySlots list) {
+        Object[] finitesArray = new Object[list.size()];
+        for(int index = 0; index < list.size(); index++) {
+          if (isFinite(list, index) instanceof String)
+            finitesArray[index] = isFinite(list, index);
+        }
+        return finitesArray[];
+    }*/
 }
